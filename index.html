@@ -460,19 +460,19 @@ function renderChecklist() {
 renderChecklist();
 
 // Google Sheets — cuando tengas la URL publicada como CSV, pegala acá:
-// const SHEET_URL = 'https://docs.google.com/spreadsheets/d/TU_ID/export?format=csv';
-// async function loadSheet() {
-//   const res = await fetch(SHEET_URL);
-//   const text = await res.text();
-//   const rows = text.trim().split('\n').slice(1);
-//   rows.forEach(row => {
-//     const [key, val] = row.split(',');
-//     const el = document.getElementById('m-' + key.trim().toLowerCase());
-//     if (el) el.textContent = val.trim();
-//   });
-//   document.getElementById('sheets-status').textContent = '✅ Actualizado desde Google Sheets · ' + new Date().toLocaleDateString('es-PY');
-// }
-// loadSheet();
+const SHEET_URL = 'https://docs.google.com/spreadsheets/d/1xVTPUDzPxnQvsjaIn4Gq--JdMeMxELRD2xhoAZWWFY8/edit?gid=1781001500#gid=1781001500';
+async function loadSheet() {
+const res = await fetch(SHEET_URL);
+const text = await res.text();
+const rows = text.trim().split('\n').slice(1);
+rows.forEach(row => {
+const [key, val] = row.split(',');
+const el = document.getElementById('m-' + key.trim().toLowerCase());
+if (el) el.textContent = val.trim();
+});
+document.getElementById('sheets-status').textContent = '✅ Actualizado desde Google Sheets · ' + new Date().toLocaleDateString('es-PY');
+}
+loadSheet();
 </script>
 </body>
 </html>
