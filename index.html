@@ -349,40 +349,49 @@
 </footer>
 
 <script>
+<script>
 // ═══════════════════════════════════════════════════════════════
-// CONFIGURACIÓN — PEGÁ TUS URLs DE GOOGLE SHEETS ACÁ
+// CONFIGURACIÓN
+// ═══════════════════════════════════════════════════════════════
+const METRICS_SHEET_URL   = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQr5NVgTKjZsrGtxwatoBX8MNFvi5fYM53p0Bd-Xw46NE4TcH7fe7Pv_efzI69uYI2xEA7BC9qf2x9V/pub?gid=994704825&single=true&output=csv';
+const CHECKLIST_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQr5NVgTKjZsrGtxwatoBX8MNFvi5fYM53p0Bd-Xw46NE4TcH7fe7Pv_efzI69uYI2xEA7BC9qf2x9V/pub?gid=229488065&single=true&output=csv';
+
+// Links directos a cada hoja para los botones
+const METRICS_SHEET_LINK   = 'https://docs.google.com/spreadsheets/d/1S2zvEBqJ1LTqKWUSKJobeua-IPgjBZ3zJUMGSVKEouw/edit?gid=994704825';
+const CHECKLIST_SHEET_LINK = 'https://docs.google.com/spreadsheets/d/1S2zvEBqJ1LTqKWUSKJobeua-IPgjBZ3zJUMGSVKEouw/edit?gid=229488065';
+
 // ═══════════════════════════════════════════════════════════════
 
-// PASO 1: Publicá cada Sheet como CSV (Archivo → Compartir → Publicar en la web → CSV)
-// PASO 2: Pegá las URLs abajo
+const fallbackMetrics = [
+  { key: 'ventas',   val: '8',      label: 'SolarTech — Ventas', meta: 'Meta: 20 en abril' },
+  { key: 'clientes', val: '0',      label: 'Asudata — Clientes', meta: 'Meta: 1 en mayo' },
+  { key: 'ingresos', val: '~1.000', label: 'Ingresos totales',   meta: 'USD / mes actual' },
+  { key: 'fondo',    val: '0%',     label: 'Fondo viaje 2027',   meta: 'Meta: 6 meses reserva' },
+];
 
-const METRICS_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQr5NVgTKjZsrGtxwatoBX8MNFvi5fYM53p0Bd-Xw46NE4TcH7fe7Pv_efzI69uYI2xEA7BC9qf2x9V/pub?gid=994704825&single=true&output=csv';     // Sheet con métricas (key, val, label, meta)
-const CHECKLIST_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQr5NVgTKjZsrGtxwatoBX8MNFvi5fYM53p0Bd-Xw46NE4TcH7fe7Pv_efzI69uYI2xEA7BC9qf2x9V/pub?output=csv';   // Sheet con checklist (texto, badge, color_bg, color_texto, hecho)
-
-// ═══════════════════════════════════════════════════════════════
-
-// Fallback de métricas (se usan cuando no hay Sheets conectado)
-const fallbackMetrics = {
-  ventas:   { val: '8',      sub: 'Meta: 20 en abril' },
-  clientes: { val: '0',      sub: 'Meta: 1 en mayo' },
-  ingresos: { val: '~1.000', sub: 'USD / mes actual' },
-  fondo:    { val: '0%',     sub: 'Meta: 6 meses reserva' },
-};
-
-// Fallback de checklist (se usa cuando no hay Sheets conectado)
 const fallbackChecklist = [
-  { texto: 'Firmar crédito hipotecario Itaú', badge: 'Luque', color_bg: '#FAECE7', color_texto: '#D85A30', hecho: 'no' },
-  { texto: 'Arrancar obra en Luque', badge: 'Luque', color_bg: '#FAECE7', color_texto: '#D85A30', hecho: 'no' },
-  { texto: 'Reunión con Liam — manual de ventas y CCO', badge: 'SolarTech', color_bg: '#E1F5EE', color_texto: '#0F6E56', hecho: 'no' },
-  { texto: 'Formalizar acuerdo con Wi (comisionista)', badge: 'SolarTech', color_bg: '#E1F5EE', color_texto: '#0F6E56', hecho: 'no' },
-  { texto: 'Inventario completo en hoja compartida con Liam', badge: 'SolarTech', color_bg: '#E1F5EE', color_texto: '#0F6E56', hecho: 'no' },
-  { texto: 'HubSpot CRM configurado con pipeline', badge: 'SolarTech', color_bg: '#E1F5EE', color_texto: '#0F6E56', hecho: 'no' },
-  { texto: 'Propuesta comercial Asudata — una página', badge: 'Asudata', color_bg: '#EEEDFE', color_texto: '#534AB7', hecho: 'no' },
+  { texto: 'Firmar crédito hipotecario Itaú',            badge: 'Luque',     color_bg: '#FAECE7', color_texto: '#D85A30', hecho: 'no' },
+  { texto: 'Arrancar obra en Luque',                     badge: 'Luque',     color_bg: '#FAECE7', color_texto: '#D85A30', hecho: 'no' },
+  { texto: 'Reunión con Liam — manual de ventas y CCO',  badge: 'SolarTech', color_bg: '#E1F5EE', color_texto: '#0F6E56', hecho: 'no' },
+  { texto: 'Formalizar acuerdo con Wi (comisionista)',   badge: 'SolarTech', color_bg: '#E1F5EE', color_texto: '#0F6E56', hecho: 'no' },
+  { texto: 'Inventario completo en hoja compartida',     badge: 'SolarTech', color_bg: '#E1F5EE', color_texto: '#0F6E56', hecho: 'no' },
+  { texto: 'HubSpot CRM configurado con pipeline',       badge: 'SolarTech', color_bg: '#E1F5EE', color_texto: '#0F6E56', hecho: 'no' },
+  { texto: 'Propuesta comercial Asudata — una página',   badge: 'Asudata',   color_bg: '#EEEDFE', color_texto: '#534AB7', hecho: 'no' },
   { texto: 'LinkedIn actualizado con Asudata y nuevo rol', badge: 'Asudata', color_bg: '#EEEDFE', color_texto: '#534AB7', hecho: 'si' },
-  { texto: 'Dominio asudata.net — web activa en Wix', badge: 'Asudata', color_bg: '#EEEDFE', color_texto: '#534AB7', hecho: 'si' },
-  { texto: 'Primer cliente pagador Asudata', badge: 'Asudata', color_bg: '#EEEDFE', color_texto: '#534AB7', hecho: 'no' },
-  { texto: 'Consulta abogado — EAS y sucesión abuela', badge: 'Legal', color_bg: '#F1EFE8', color_texto: '#444441', hecho: 'no' },
-  { texto: 'Buscar monoambiente para mudarse', badge: 'Personal', color_bg: '#FBEAF0', color_texto: '#993556', hecho: 'no' },
+  { texto: 'Dominio asudata.net — web activa en Wix',    badge: 'Asudata',   color_bg: '#EEEDFE', color_texto: '#534AB7', hecho: 'si' },
+  { texto: 'Primer cliente pagador Asudata',             badge: 'Asudata',   color_bg: '#EEEDFE', color_texto: '#534AB7', hecho: 'no' },
+  { texto: 'Consulta abogado — EAS y sucesión abuela',   badge: 'Legal',     color_bg: '#F1EFE8', color_texto: '#444441', hecho: 'no' },
+  { texto: 'Buscar monoambiente para mudarse',           badge: 'Personal',  color_bg: '#FBEAF0', color_texto: '#993556', hecho: 'no' },
+];
+
+// Paleta de colores cíclica para tarjetas dinámicas
+const CARD_PALETTE = [
+  { top: '#D85A30', val: '#D85A30' },
+  { top: '#534AB7', val: '#534AB7' },
+  { top: '#0F6E56', val: '#0F6E56' },
+  { top: '#BA7517', val: '#BA7517' },
+  { top: '#185FA5', val: '#185FA5' },
+  { top: '#993556', val: '#993556' },
 ];
 
 // ─── PARSEAR CSV ──────────────────────────────────────────────
@@ -390,54 +399,91 @@ function parseCSV(text) {
   const lines = text.trim().split('\n');
   const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, ''));
   return lines.slice(1).map(line => {
-    const vals = line.split(',').map(v => v.trim().replace(/"/g, ''));
-    return headers.reduce((obj, h, i) => { obj[h] = vals[i] || ''; return obj; }, {});
+    // Manejo básico de comas dentro de comillas
+    const vals = [];
+    let cur = '', inQ = false;
+    for (const ch of line) {
+      if (ch === '"') { inQ = !inQ; }
+      else if (ch === ',' && !inQ) { vals.push(cur.trim()); cur = ''; }
+      else { cur += ch; }
+    }
+    vals.push(cur.trim());
+    return headers.reduce((obj, h, i) => { obj[h] = (vals[i] || '').replace(/"/g, ''); return obj; }, {});
   });
 }
 
-// ─── CARGAR MÉTRICAS ─────────────────────────────────────────
+// ─── CARGAR MÉTRICAS DINÁMICAS ────────────────────────────────
 async function loadMetrics() {
-  if (!METRICS_SHEET_URL) {
-    renderMetrics(fallbackMetrics);
-    document.getElementById('metrics-status').textContent = '💡 Conectá tu Google Sheet para actualizar los números sin tocar código.';
-    return;
-  }
   try {
-    const res = await fetch(METRICS_SHEET_URL);
+    const res  = await fetch(METRICS_SHEET_URL);
     const text = await res.text();
-    const rows = parseCSV(text);
-    const data = {};
-    rows.forEach(row => {
-      if (row.key) data[row.key.toLowerCase()] = { val: row.val, sub: row.meta };
-    });
-    renderMetrics(data);
-    document.getElementById('metrics-status').textContent = '✅ Actualizado desde Google Sheets · ' + new Date().toLocaleDateString('es-PY');
+    const rows = parseCSV(text).filter(r => r.key && r.key.trim());
+    renderMetricsDynamic(rows);
+    document.getElementById('metrics-status').textContent =
+      '✅ Actualizado desde Google Sheets · ' + new Date().toLocaleDateString('es-PY');
   } catch(e) {
-    renderMetrics(fallbackMetrics);
-    document.getElementById('metrics-status').textContent = '⚠️ No se pudo conectar con Sheets — mostrando datos locales.';
+    renderMetricsDynamic(fallbackMetrics);
+    document.getElementById('metrics-status').textContent =
+      '⚠️ No se pudo conectar con Sheets — mostrando datos locales.';
   }
 }
 
-function renderMetrics(data) {
-  const keys = ['ventas','clientes','ingresos','fondo'];
-  keys.forEach(k => {
-    const d = data[k];
-    if (!d) return;
-    const valEl = document.getElementById('m-' + k);
-    const subEl = document.getElementById('m-' + k + '-sub');
-    if (valEl) valEl.textContent = d.val || '—';
-    if (subEl) subEl.textContent = d.sub || '';
+function renderMetricsDynamic(rows) {
+  const grid = document.querySelector('.metrics-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  // Ajustar columnas según cantidad de tarjetas
+  const n = rows.length;
+  grid.style.gridTemplateColumns = n <= 4
+    ? `repeat(${n}, 1fr)`
+    : `repeat(${Math.min(n, 4)}, 1fr)`;
+
+  rows.forEach((row, i) => {
+    const { top, val: valColor } = CARD_PALETTE[i % CARD_PALETTE.length];
+    const card = document.createElement('div');
+    card.className = 'metric-card';
+    card.style.cssText = `--top:${top}`;
+    card.innerHTML = `
+      <style>.metric-card[style*="${top}"]::before{background:${top}}</style>
+      <div class="metric-label">${row.label || row.key}</div>
+      <div class="metric-val" style="color:${valColor};font-family:'Syne',sans-serif;font-size:28px;font-weight:800;letter-spacing:-1px;margin-bottom:3px">${row.val || '—'}</div>
+      <div class="metric-sub">${row.meta || ''}</div>
+    `;
+    grid.appendChild(card);
   });
+
+  // Botón editar métricas
+  const statusRow = document.getElementById('metrics-status');
+  if (statusRow && !document.getElementById('btn-metrics-sheet')) {
+    const btn = document.createElement('a');
+    btn.id = 'btn-metrics-sheet';
+    btn.href = METRICS_SHEET_LINK;
+    btn.target = '_blank';
+    btn.textContent = '✏️ Editar métricas';
+    btn.style.cssText = `
+      display:inline-flex;align-items:center;gap:6px;
+      background:#0F6E56;color:white;font-size:12px;font-weight:600;
+      padding:7px 14px;border-radius:20px;text-decoration:none;
+      margin-left:12px;transition:opacity .2s;
+    `;
+    btn.onmouseover = () => btn.style.opacity = '.8';
+    btn.onmouseout  = () => btn.style.opacity = '1';
+    statusRow.parentNode.insertBefore(btn, statusRow.nextSibling);
+
+    // Wrapper para alinear status + botón
+    const wrapper = document.createElement('div');
+    wrapper.style.cssText = 'display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-top:8px';
+    statusRow.parentNode.insertBefore(wrapper, statusRow);
+    wrapper.appendChild(statusRow);
+    wrapper.appendChild(btn);
+  }
 }
 
 // ─── CARGAR CHECKLIST ─────────────────────────────────────────
 async function loadChecklist() {
-  if (!CHECKLIST_SHEET_URL) {
-    renderChecklist(fallbackChecklist);
-    return;
-  }
   try {
-    const res = await fetch(CHECKLIST_SHEET_URL);
+    const res  = await fetch(CHECKLIST_SHEET_URL);
     const text = await res.text();
     const rows = parseCSV(text);
     renderChecklist(rows);
@@ -450,8 +496,9 @@ function renderChecklist(items) {
   const container = document.getElementById('checklist');
   container.innerHTML = '';
   let doneCount = 0;
+
   items.forEach(item => {
-    const isDone = (item.hecho || '').toLowerCase() === 'si';
+    const isDone = (item.hecho || '').toLowerCase().trim() === 'si';
     if (isDone) doneCount++;
     const div = document.createElement('div');
     div.className = 'checklist-item' + (isDone ? ' done' : '');
@@ -462,11 +509,13 @@ function renderChecklist(items) {
         </svg>
       </div>
       <span class="ci-text">${item.texto || item.text || ''}</span>
-      <span class="ci-badge" style="background:${item.color_bg || item.bc || '#F1EFE8'};color:${item.color_texto || item.bt || '#444441'}">${item.badge || ''}</span>
+      <span class="ci-badge" style="background:${item.color_bg||'#F1EFE8'};color:${item.color_texto||'#444441'}">${item.badge||''}</span>
     `;
     container.appendChild(div);
   });
-  const pct = Math.round(doneCount / items.length * 100);
+
+  const total = items.length || 1;
+  const pct   = Math.round(doneCount / total * 100);
   document.getElementById('cl-progress').textContent = `${doneCount} / ${items.length} completados`;
   document.getElementById('cl-bar').style.width = pct + '%';
 }
@@ -474,6 +523,7 @@ function renderChecklist(items) {
 // ─── INICIAR ──────────────────────────────────────────────────
 loadMetrics();
 loadChecklist();
+</script>
 </script>
 </body>
 </html>
