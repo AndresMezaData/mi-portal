@@ -7,15 +7,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
   :root {
-    --purple:#534AB7;--purple-light:#EEEDFE;--teal:#0F6E56;--teal-light:#E1F5EE;
-    --amber:#BA7517;--amber-light:#FAEEDA;--coral:#D85A30;--coral-light:#FAECE7;
-    --pink:#993556;--pink-light:#FBEAF0;--blue:#185FA5;--blue-light:#E6F1FB;
+    --purple:#3D2B8A;--purple-deep:#2D1B69;--purple-mid:#4E3BAA;
+    --purple-light:#EEEDFE;--purple-glow:rgba(61,43,138,0.12);
+    --teal:#0F6E56;--teal-light:#E1F5EE;
+    --amber:#BA7517;--amber-light:#FAEEDA;
+    --coral:#D85A30;--coral-light:#FAECE7;
+    --pink:#993556;--pink-light:#FBEAF0;
+    --blue:#185FA5;--blue-light:#E6F1FB;
     --gray:#2C2C2A;--gray-mid:#5F5E5A;--gray-light:#F1EFE8;
     --bg:#F7F6F2;--white:#FFFFFF;--border:rgba(44,44,42,0.1);
+    --border-purple:rgba(255,255,255,0.15);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--gray);overflow-x:hidden}
 
+  /* NAV */
   nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(247,246,242,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between}
   .nav-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:16px;color:var(--gray)}
   .nav-brand span{color:var(--purple)}
@@ -23,139 +29,157 @@
   .nav-links a{font-size:12px;font-weight:500;color:var(--gray-mid);text-decoration:none;transition:color .2s}
   .nav-links a:hover{color:var(--purple)}
 
+  /* HERO — MORADO OSCURO */
   .hero{min-height:100vh;display:flex;align-items:center;padding:80px 32px 60px;max-width:1100px;margin:0 auto;gap:60px}
   .hero-left{flex:1}
-  .hero-tag{display:inline-flex;align-items:center;gap:8px;background:var(--purple-light);color:var(--purple);font-size:12px;font-weight:600;padding:6px 14px;border-radius:20px;margin-bottom:24px;letter-spacing:.04em;text-transform:uppercase}
-  .hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--purple);animation:pulse 2s infinite}
+  .hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.9);font-size:12px;font-weight:600;padding:6px 14px;border-radius:20px;margin-bottom:24px;letter-spacing:.04em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.2)}
+  .hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:#A78BFA;animation:pulse 2s infinite}
   @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
-  h1{font-family:'Syne',sans-serif;font-size:clamp(42px,6vw,72px);font-weight:800;line-height:1;letter-spacing:-2px;margin-bottom:8px}
-  h1 .accent{color:var(--purple)}
-  .hero-subtitle{font-size:17px;color:var(--gray-mid);line-height:1.6;margin:20px 0 32px;max-width:480px;font-weight:300}
+  h1{font-family:'Syne',sans-serif;font-size:clamp(42px,6vw,72px);font-weight:800;line-height:1;letter-spacing:-2px;margin-bottom:8px;color:white}
+  h1 .accent{color:#A78BFA}
+  .hero-subtitle{font-size:17px;color:rgba(255,255,255,0.65);line-height:1.6;margin:20px 0 32px;max-width:480px;font-weight:300}
   .hero-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px}
-  .pill{font-size:12px;font-weight:500;padding:5px 12px;border-radius:20px;border:1px solid var(--border);background:var(--white);color:var(--gray-mid)}
-  .pill.p{background:var(--purple-light);color:var(--purple);border-color:transparent}
-  .pill.t{background:var(--teal-light);color:var(--teal);border-color:transparent}
-  .pill.a{background:var(--amber-light);color:var(--amber);border-color:transparent}
-  .pill.c{background:var(--coral-light);color:var(--coral);border-color:transparent}
-  .pill.b{background:var(--blue-light);color:var(--blue);border-color:transparent}
+  .pill{font-size:12px;font-weight:500;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.8)}
+  .pill.p{background:rgba(167,139,250,0.2);color:#C4B5FD;border-color:rgba(167,139,250,0.3)}
+  .pill.t{background:rgba(15,110,86,0.3);color:#6EE7C7;border-color:rgba(15,110,86,0.4)}
+  .pill.a{background:rgba(186,117,23,0.3);color:#FCD34D;border-color:rgba(186,117,23,0.4)}
+  .pill.c{background:rgba(216,90,48,0.3);color:#FCA272;border-color:rgba(216,90,48,0.4)}
+  .pill.b{background:rgba(24,95,165,0.3);color:#93C5FD;border-color:rgba(24,95,165,0.4)}
   .hero-stats{display:flex;gap:32px}
-  .stat-val{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;letter-spacing:-1px}
-  .stat-label{font-size:12px;color:var(--gray-mid);margin-top:2px}
+  .stat-val{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;letter-spacing:-1px;color:white}
+  .stat-label{font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px}
   .hero-right{flex:0 0 310px;display:flex;flex-direction:column;gap:10px}
 
-  .mini-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:16px 18px;transition:transform .2s,box-shadow .2s;text-decoration:none;display:block;color:inherit}
-  .mini-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(44,44,42,.08)}
-  .mc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+  /* MINI CARDS en hero (sobre fondo morado) */
+  .mini-card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:16px 18px;transition:transform .2s,box-shadow .2s,background .2s;text-decoration:none;display:block;color:inherit;backdrop-filter:blur(8px)}
+  .mini-card:hover{transform:translateY(-2px);background:rgba(255,255,255,0.14);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+  .mc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;color:rgba(255,255,255,0.5)}
   .mc-badge{font-size:10px;font-weight:600;padding:3px 10px;border-radius:20px;letter-spacing:.04em;text-transform:uppercase}
-  .mc-badge.p{background:var(--purple-light);color:var(--purple)}
-  .mc-badge.t{background:var(--teal-light);color:var(--teal)}
-  .mc-badge.c{background:var(--coral-light);color:var(--coral)}
-  .mc-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:3px}
-  .mc-desc{font-size:11px;color:var(--gray-mid);line-height:1.4}
-  .mc-progress{margin-top:8px;height:3px;background:var(--gray-light);border-radius:2px;overflow:hidden}
+  .mc-badge.p{background:rgba(167,139,250,0.2);color:#C4B5FD}
+  .mc-badge.t{background:rgba(15,110,86,0.3);color:#6EE7C7}
+  .mc-badge.c{background:rgba(216,90,48,0.3);color:#FCA272}
+  .mc-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:3px;color:white}
+  .mc-desc{font-size:11px;color:rgba(255,255,255,0.5);line-height:1.4}
+  .mc-progress{margin-top:8px;height:3px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden}
   .mc-progress-fill{height:100%;border-radius:2px}
 
+  /* WRAPPER HERO — fondo morado */
+  .hero-wrapper{background:linear-gradient(135deg,var(--purple-deep) 0%,var(--purple) 50%,var(--purple-mid) 100%);position:relative;overflow:hidden}
+  .hero-wrapper::before{content:'';position:absolute;top:-50%;right:-10%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,0.12) 0%,transparent 70%);pointer-events:none}
+
+  /* SECCIONES — alternancia morado / blanco */
   section{max-width:1100px;margin:0 auto;padding:80px 32px}
   .section-header{margin-bottom:40px}
-  .section-tag{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);margin-bottom:10px}
+
+  /* Bloque BLANCO */
+  .sec-white{background:var(--white)}
+  .sec-white .section-tag{color:var(--purple)}
+  .sec-white h2{color:var(--gray)}
+
+  /* Bloque MORADO */
+  .sec-purple{background:linear-gradient(135deg,var(--purple-deep) 0%,var(--purple) 100%);position:relative;overflow:hidden}
+  .sec-purple::before{content:'';position:absolute;bottom:-30%;left:-5%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,0.1) 0%,transparent 70%);pointer-events:none}
+  .sec-purple section{position:relative;z-index:1}
+  .sec-purple .section-tag{color:#A78BFA}
+  .sec-purple h2{color:white}
+  .sec-purple h2 br+*,.sec-purple h2{color:white}
+  .sec-purple .divider-inner{border-color:rgba(255,255,255,0.1)}
+
+  .section-tag{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
   h2{font-family:'Syne',sans-serif;font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-1.5px;line-height:1.1}
-  .divider{border:none;border-top:1px solid var(--border);max-width:1100px;margin:0 auto}
+  .divider{border:none;border-top:1px solid var(--border)}
 
   /* MÉTRICAS */
   .metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px}
-  .metric-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:20px;position:relative;overflow:hidden}
+  .metric-card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:20px;position:relative;overflow:hidden;backdrop-filter:blur(8px)}
   .metric-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
-  .metric-card.solar::before{background:var(--coral)}
-  .metric-card.asu::before{background:var(--purple)}
-  .metric-card.fin::before{background:var(--teal)}
-  .metric-card.meta::before{background:var(--amber)}
-  .metric-label{font-size:11px;font-weight:600;color:var(--gray-mid);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
-  .metric-val{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;letter-spacing:-1px;margin-bottom:3px}
-  .metric-val.solar{color:var(--coral)}.metric-val.asu{color:var(--purple)}.metric-val.fin{color:var(--teal)}.metric-val.meta{color:var(--amber)}
-  .metric-sub{font-size:11px;color:var(--gray-mid)}
-  .sheets-status{font-size:11px;color:var(--gray-mid);text-align:right;font-style:italic;margin-top:8px}
+  .metric-label{font-size:11px;font-weight:600;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+  .metric-val{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;letter-spacing:-1px;margin-bottom:3px;color:white}
+  .metric-sub{font-size:11px;color:rgba(255,255,255,0.5)}
+  .sheets-status{font-size:11px;color:rgba(255,255,255,0.5);text-align:right;font-style:italic;margin-top:8px}
 
-  /* CHECKLIST */
+  /* CHECKLIST — sobre blanco */
   .checklist-container{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:24px}
   .checklist-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-  .checklist-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:700}
+  .checklist-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--gray)}
   .cl-progress-text{font-size:13px;color:var(--gray-mid)}
   .checklist-bar{height:4px;background:var(--gray-light);border-radius:2px;margin-bottom:20px;overflow:hidden}
-  .checklist-bar-fill{height:100%;background:var(--teal);border-radius:2px;transition:width .5s ease}
+  .checklist-bar-fill{height:100%;background:var(--purple);border-radius:2px;transition:width .5s ease}
   .checklist-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;transition:background .15s;user-select:none}
   .checklist-item:hover{background:var(--gray-light)}
   .checklist-item.done .ci-text{text-decoration:line-through;color:var(--gray-mid);opacity:.6}
   .ci-box{width:18px;height:18px;border-radius:5px;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s}
-  .checklist-item.done .ci-box{background:var(--teal);border-color:var(--teal)}
+  .checklist-item.done .ci-box{background:var(--purple);border-color:var(--purple)}
   .ci-check{width:10px;height:10px;opacity:0;transition:opacity .2s}
   .checklist-item.done .ci-check{opacity:1}
-  .ci-text{font-size:13px;flex:1}
+  .ci-text{font-size:13px;flex:1;color:var(--gray)}
   .ci-badge{font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;white-space:nowrap}
   .sheets-hint{margin-top:16px;padding-top:16px;border-top:1px solid var(--border);font-size:11px;color:var(--gray-mid);display:flex;align-items:center;gap:6px}
   .loading{font-size:13px;color:var(--gray-mid);padding:20px;text-align:center}
 
-  /* PROYECTOS */
+  /* PROYECTOS — sobre morado */
   .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  .project-card{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:26px;position:relative;overflow:hidden;transition:transform .2s}
-  .project-card:hover{transform:translateY(-3px)}
+  .project-card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:26px;position:relative;overflow:hidden;transition:transform .2s;backdrop-filter:blur(8px)}
+  .project-card:hover{transform:translateY(-3px);background:rgba(255,255,255,0.13)}
   .project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
   .project-card.solar::before{background:linear-gradient(90deg,#D85A30,#FAC775)}
-  .project-card.asu::before{background:linear-gradient(90deg,#534AB7,#7F77DD)}
+  .project-card.asu::before{background:linear-gradient(90deg,#A78BFA,#C4B5FD)}
   .project-card.airbnb::before{background:linear-gradient(90deg,#FF5A5F,#FC642D)}
-  .project-card.ia::before{background:linear-gradient(90deg,#185FA5,#5DCAA5)}
-  .project-num{font-family:'Syne',sans-serif;font-size:56px;font-weight:800;line-height:1;opacity:.05;position:absolute;top:16px;right:16px}
+  .project-card.ia::before{background:linear-gradient(90deg,#93C5FD,#5DCAA5)}
+  .project-num{font-family:'Syne',sans-serif;font-size:56px;font-weight:800;line-height:1;opacity:.06;position:absolute;top:16px;right:16px;color:white}
   .project-badge{font-size:10px;font-weight:600;padding:4px 10px;border-radius:20px;display:inline-block;margin-bottom:12px;letter-spacing:.04em;text-transform:uppercase}
-  .project-card.solar .project-badge{background:var(--coral-light);color:var(--coral)}
-  .project-card.asu .project-badge{background:var(--purple-light);color:var(--purple)}
-  .project-card.airbnb .project-badge{background:#FFF0F0;color:#FF5A5F}
-  .project-card.ia .project-badge{background:var(--blue-light);color:var(--blue)}
-  .project-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px}
-  .project-desc{font-size:12px;color:var(--gray-mid);line-height:1.6;margin-bottom:16px}
+  .project-card.solar .project-badge{background:rgba(216,90,48,0.3);color:#FCA272}
+  .project-card.asu .project-badge{background:rgba(167,139,250,0.3);color:#C4B5FD}
+  .project-card.airbnb .project-badge{background:rgba(255,90,95,0.3);color:#FCA5A5}
+  .project-card.ia .project-badge{background:rgba(147,197,253,0.3);color:#93C5FD}
+  .project-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;color:white}
+  .project-desc{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.6;margin-bottom:16px}
   .project-metrics{display:flex;gap:16px;flex-wrap:wrap}
-  .pm-val{font-family:'Syne',sans-serif;font-size:18px;font-weight:800}
-  .project-card.solar .pm-val{color:var(--coral)}.project-card.asu .pm-val{color:var(--purple)}.project-card.airbnb .pm-val{color:#FF5A5F}.project-card.ia .pm-val{color:var(--blue)}
-  .pm-label{font-size:10px;color:var(--gray-mid);margin-top:1px}
-  .project-team{margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:var(--gray-mid)}
-  .project-team strong{color:var(--gray);font-weight:500}
+  .pm-val{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:white}
+  .pm-label{font-size:10px;color:rgba(255,255,255,0.5);margin-top:1px}
+  .project-team{margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.1);font-size:11px;color:rgba(255,255,255,0.5)}
+  .project-team strong{color:rgba(255,255,255,0.75);font-weight:500}
 
-  /* PERSONAL */
+  /* PERSONAL — sobre blanco */
   .personal-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   .personal-card{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:26px}
   .personal-icon{font-size:28px;margin-bottom:12px}
-  .personal-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px}
+  .personal-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px;color:var(--gray)}
   .personal-desc{font-size:13px;color:var(--gray-mid);line-height:1.65}
   .personal-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
-  .personal-tag{font-size:11px;padding:3px 10px;border-radius:20px;background:var(--gray-light);color:var(--gray-mid);font-weight:500}
+  .personal-tag{font-size:11px;padding:3px 10px;border-radius:20px;background:var(--purple-light);color:var(--purple);font-weight:500}
 
-  /* TIMELINE */
+  /* TIMELINE — sobre morado */
   .timeline{position:relative;padding-left:32px}
-  .timeline::before{content:'';position:absolute;left:8px;top:12px;bottom:12px;width:2px;background:var(--border)}
+  .timeline::before{content:'';position:absolute;left:8px;top:12px;bottom:12px;width:2px;background:rgba(255,255,255,0.15)}
   .tl-item{position:relative;margin-bottom:24px}
-  .tl-dot{position:absolute;left:-28px;top:14px;width:12px;height:12px;border-radius:50%;background:var(--white);border:2px solid var(--border)}
-  .tl-dot.done{background:var(--teal);border-color:var(--teal)}
-  .tl-dot.now{background:var(--purple);border-color:var(--purple);box-shadow:0 0 0 4px var(--purple-light)}
-  .tl-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:16px 18px}
-  .tl-card.now-card{border-color:var(--purple);box-shadow:0 0 0 3px var(--purple-light)}
-  .tl-period{font-size:11px;font-weight:600;color:var(--gray-mid);letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
-  .tl-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:4px}
-  .tl-desc{font-size:12px;color:var(--gray-mid);line-height:1.6}
+  .tl-dot{position:absolute;left:-28px;top:14px;width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,0.1);border:2px solid rgba(255,255,255,0.3)}
+  .tl-dot.done{background:#A78BFA;border-color:#A78BFA}
+  .tl-dot.now{background:white;border-color:white;box-shadow:0 0 0 4px rgba(255,255,255,0.2)}
+  .tl-card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:16px 18px;backdrop-filter:blur(8px)}
+  .tl-card.now-card{border-color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.13)}
+  .tl-period{font-size:11px;font-weight:600;color:rgba(255,255,255,0.5);letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+  .tl-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:4px;color:white}
+  .tl-desc{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.6}
 
-  /* RUTINA */
+  /* SISTEMA — sobre blanco */
   .rutina-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:48px}
   .rutina-block{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
   .rb-dot{width:8px;height:8px;border-radius:50%;margin-top:5px;flex-shrink:0}
-  .rb-time{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--gray-mid);min-width:48px;padding-top:1px}
-  .rb-title{font-size:13px;font-weight:500;margin-bottom:2px}
+  .rb-time{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--purple);min-width:48px;padding-top:1px}
+  .rb-title{font-size:13px;font-weight:500;margin-bottom:2px;color:var(--gray)}
   .rb-desc{font-size:11px;color:var(--gray-mid);line-height:1.4}
 
   .reglas-list{display:flex;flex-direction:column}
   .regla{display:flex;gap:20px;padding:18px 0;border-bottom:1px solid var(--border)}
   .regla:last-child{border-bottom:none}
   .regla-n{font-family:'Syne',sans-serif;font-size:12px;font-weight:800;color:var(--purple);min-width:28px;padding-top:2px;opacity:.5}
-  .regla-title{font-size:14px;font-weight:500;margin-bottom:3px}
+  .regla-title{font-size:14px;font-weight:500;margin-bottom:3px;color:var(--gray)}
   .regla-desc{font-size:12px;color:var(--gray-mid);line-height:1.6}
 
-  footer{border-top:1px solid var(--border);padding:28px 32px;text-align:center;font-size:12px;color:var(--gray-mid);max-width:1100px;margin:0 auto}
+  /* FOOTER — morado */
+  footer{background:var(--purple-deep);border-top:1px solid rgba(255,255,255,0.1);padding:28px 32px;text-align:center;font-size:12px;color:rgba(255,255,255,0.5);max-width:100%}
+  footer strong{color:rgba(255,255,255,0.85)}
 
   @media(max-width:768px){
     .hero{flex-direction:column;padding:100px 20px 40px;gap:32px}
@@ -182,184 +206,211 @@
   </div>
 </nav>
 
-<div class="hero">
-  <div class="hero-left">
-    <div class="hero-tag">2026 · En construcción</div>
-    <h1>Andrés<br><span class="accent">Sebastián</span></h1>
-    <p class="hero-subtitle">Ingeniero Comercial · CEO de SolarTech y Asudata · Construyendo patrimonio y libertad desde Asunción, Paraguay.</p>
-    <div class="hero-pills">
-      <span class="pill p">Project Leader</span>
-      <span class="pill t">SolarTech</span>
-      <span class="pill a">Asudata BI+IA</span>
-      <span class="pill c">Chief AI Officer</span>
-      <span class="pill b">Airbnb Investor</span>
-      <span class="pill">Asunción, PY</span>
+<!-- HERO — MORADO -->
+<div class="hero-wrapper">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">2026 · En construcción</div>
+      <h1>Andrés<br><span class="accent">Sebastián</span></h1>
+      <p class="hero-subtitle">Ingeniero Comercial · CEO de SolarTech y Asudata · Construyendo patrimonio y libertad desde Asunción, Paraguay.</p>
+      <div class="hero-pills">
+        <span class="pill p">Project Leader</span>
+        <span class="pill t">SolarTech</span>
+        <span class="pill a">Asudata BI+IA</span>
+        <span class="pill c">Chief AI Officer</span>
+        <span class="pill b">Airbnb Investor</span>
+        <span class="pill">Asunción, PY</span>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-val">4</div><div class="stat-label">Terrenos</div></div>
+        <div><div class="stat-val">4</div><div class="stat-label">Proyectos</div></div>
+        <div><div class="stat-val">2027</div><div class="stat-label">Meta: Europa / EAU</div></div>
+      </div>
     </div>
-    <div class="hero-stats">
-      <div><div class="stat-val">4</div><div class="stat-label">Terrenos</div></div>
-      <div><div class="stat-val">4</div><div class="stat-label">Proyectos</div></div>
-      <div><div class="stat-val">2027</div><div class="stat-label">Meta: Europa / EAU</div></div>
+    <div class="hero-right">
+      <a class="mini-card" href="#metricas">
+        <div class="mc-top"><span class="mc-badge t">En vivo</span><span>→</span></div>
+        <div class="mc-title">Métricas del mes</div>
+        <div class="mc-desc">Ventas, ingresos y metas actualizadas</div>
+        <div class="mc-progress"><div class="mc-progress-fill" style="width:40%;background:#6EE7C7"></div></div>
+      </a>
+      <a class="mini-card" href="#pendientes">
+        <div class="mc-top"><span class="mc-badge p">Checklist</span><span>→</span></div>
+        <div class="mc-title">Pendientes Q2</div>
+        <div class="mc-desc">Tareas críticas de abril a junio</div>
+        <div class="mc-progress"><div class="mc-progress-fill" style="width:20%;background:#A78BFA"></div></div>
+      </a>
+      <a class="mini-card" href="#proyectos">
+        <div class="mc-top"><span class="mc-badge c">Activos</span><span>→</span></div>
+        <div class="mc-title">4 proyectos corriendo</div>
+        <div class="mc-desc">SolarTech · Asudata · Airbnb · IA contable</div>
+        <div class="mc-progress"><div class="mc-progress-fill" style="width:25%;background:#FCA272"></div></div>
+      </a>
     </div>
-  </div>
-  <div class="hero-right">
-    <a class="mini-card" href="#metricas">
-      <div class="mc-top"><span class="mc-badge t">En vivo</span><span>→</span></div>
-      <div class="mc-title">Métricas del mes</div>
-      <div class="mc-desc">Ventas, ingresos y metas actualizadas</div>
-      <div class="mc-progress"><div class="mc-progress-fill" style="width:40%;background:#0F6E56"></div></div>
-    </a>
-    <a class="mini-card" href="#pendientes">
-      <div class="mc-top"><span class="mc-badge p">Checklist</span><span>→</span></div>
-      <div class="mc-title">Pendientes Q2</div>
-      <div class="mc-desc">Tareas críticas de abril a junio</div>
-      <div class="mc-progress"><div class="mc-progress-fill" style="width:20%;background:#534AB7"></div></div>
-    </a>
-    <a class="mini-card" href="#proyectos">
-      <div class="mc-top"><span class="mc-badge c">Activos</span><span>→</span></div>
-      <div class="mc-title">4 proyectos corriendo</div>
-      <div class="mc-desc">SolarTech · Asudata · Airbnb · IA contable</div>
-      <div class="mc-progress"><div class="mc-progress-fill" style="width:25%;background:#D85A30"></div></div>
-    </a>
   </div>
 </div>
 
-<hr class="divider">
-
-<!-- MÉTRICAS -->
-<section id="metricas">
-  <div class="section-header">
-    <div class="section-tag">Dashboard · Abril 2026</div>
-    <h2>Números<br>del mes.</h2>
-  </div>
-  <div class="metrics-grid">
-    <div class="metric-card solar"><div class="metric-label">SolarTech — Ventas</div><div class="metric-val solar" id="m-ventas">—</div><div class="metric-sub" id="m-ventas-sub">Cargando...</div></div>
-    <div class="metric-card asu"><div class="metric-label">Asudata — Clientes</div><div class="metric-val asu" id="m-clientes">—</div><div class="metric-sub" id="m-clientes-sub">Cargando...</div></div>
-    <div class="metric-card fin"><div class="metric-label">Ingresos totales</div><div class="metric-val fin" id="m-ingresos">—</div><div class="metric-sub" id="m-ingresos-sub">Cargando...</div></div>
-    <div class="metric-card meta"><div class="metric-label">Fondo viaje 2027</div><div class="metric-val meta" id="m-fondo">—</div><div class="metric-sub" id="m-fondo-sub">Cargando...</div></div>
-  </div>
-  <p class="sheets-status" id="metrics-status">⏳ Conectando con Google Sheets...</p>
-</section>
-
-<hr class="divider">
-
-<!-- CHECKLIST -->
-<section id="pendientes">
-  <div class="section-header">
-    <div class="section-tag">Checklist · Q2 2026 · Desde Google Sheets</div>
-    <h2>Lo que tiene<br>que pasar.</h2>
-  </div>
-  <div class="checklist-container">
-    <div class="checklist-header">
-      <div class="checklist-title">Pendientes críticos — Abril a Junio</div>
-      <div class="cl-progress-text" id="cl-progress">Cargando...</div>
+<!-- MÉTRICAS — MORADO -->
+<div class="sec-purple">
+  <section id="metricas">
+    <div class="section-header">
+      <div class="section-tag">Dashboard · Abril 2026</div>
+      <h2>Números<br>del mes.</h2>
     </div>
-    <div class="checklist-bar"><div class="checklist-bar-fill" id="cl-bar" style="width:0%"></div></div>
-    <div id="checklist"><div class="loading">⏳ Cargando tareas desde Google Sheets...</div></div>
-   <div class="sheets-hint" style="justify-content:space-between;align-items:center">
-  <span>📊 Editá las tareas en Google Sheets — se actualizan al recargar.</span>
-  <a href="https://docs.google.com/spreadsheets/d/1S2zvEBqJ1LTqKWUSKJobeua-IPgjBZ3zJUMGSVKEouw/edit?gid=229488065#gid=229488065" target="_blank" style="display:inline-flex;align-items:center;gap:6px;background:#534AB7;color:white;font-size:12px;font-weight:600;padding:7px 14px;border-radius:20px;text-decoration:none;white-space:nowrap;transition:opacity .2s" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
-    ✏️ Abrir Sheet
-  </a>
+    <div class="metrics-grid">
+      <div class="metric-card"><div class="metric-label">SolarTech — Ventas</div><div class="metric-val" id="m-ventas" style="color:#FCA272">—</div><div class="metric-sub" id="m-ventas-sub">Cargando...</div></div>
+      <div class="metric-card"><div class="metric-label">Asudata — Clientes</div><div class="metric-val" id="m-clientes" style="color:#A78BFA">—</div><div class="metric-sub" id="m-clientes-sub">Cargando...</div></div>
+      <div class="metric-card"><div class="metric-label">Ingresos totales</div><div class="metric-val" id="m-ingresos" style="color:#6EE7C7">—</div><div class="metric-sub" id="m-ingresos-sub">Cargando...</div></div>
+      <div class="metric-card"><div class="metric-label">Fondo viaje 2027</div><div class="metric-val" id="m-fondo" style="color:#FCD34D">—</div><div class="metric-sub" id="m-fondo-sub">Cargando...</div></div>
+    </div>
+    <p class="sheets-status" id="metrics-status">⏳ Conectando con Google Sheets...</p>
+  </section>
 </div>
-  </div>
-</section>
 
-<hr class="divider">
+<!-- CHECKLIST — BLANCO -->
+<div class="sec-white">
+  <section id="pendientes">
+    <div class="section-header">
+      <div class="section-tag">Checklist · Q2 2026 · Desde Google Sheets</div>
+      <h2>Lo que tiene<br>que pasar.</h2>
+    </div>
+    <div class="checklist-container">
+      <div class="checklist-header">
+        <div class="checklist-title">Pendientes críticos — Abril a Junio</div>
+        <div class="cl-progress-text" id="cl-progress">Cargando...</div>
+      </div>
+      <div class="checklist-bar"><div class="checklist-bar-fill" id="cl-bar" style="width:0%"></div></div>
+      <div id="checklist"><div class="loading">⏳ Cargando tareas desde Google Sheets...</div></div>
+      <div class="sheets-hint" style="justify-content:space-between;align-items:center">
+        <span>📊 Editá las tareas en Google Sheets — se actualizan al recargar.</span>
+        <a href="https://docs.google.com/spreadsheets/d/1S2zvEBqJ1LTqKWUSKJobeua-IPgjBZ3zJUMGSVKEouw/edit?gid=229488065#gid=229488065" target="_blank" style="display:inline-flex;align-items:center;gap:6px;background:#3D2B8A;color:white;font-size:12px;font-weight:600;padding:7px 14px;border-radius:20px;text-decoration:none;white-space:nowrap;transition:opacity .2s" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
+          ✏️ Abrir Sheet
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
 
-<!-- PROYECTOS -->
-<section id="proyectos">
-  <div class="section-header">
-    <div class="section-tag">Emprendimientos</div>
-    <h2>Cuatro proyectos.<br>Un sistema.</h2>
-  </div>
-  <div class="projects-grid">
-    <div class="project-card solar"><div class="project-num">01</div><span class="project-badge">Activo</span><div class="project-title">SolarTech</div><div class="project-desc">Soluciones de energía solar en Paraguay. Iluminación solar con red de comisionistas y expansión al interior. Metodología Agile con sprints quincenales.</div><div class="project-metrics"><div><div class="pm-val">8</div><div class="pm-label">Ventas primer mes</div></div><div><div class="pm-val">60%+</div><div class="pm-label">Margen neto</div></div><div><div class="pm-val">2</div><div class="pm-label">Zonas activas</div></div></div><div class="project-team"><strong>Equipo:</strong> Andrés (CEO) · Liam (CCO/Socio) · Wi y red de comisionistas</div></div>
-    <div class="project-card asu"><div class="project-num">02</div><span class="project-badge">Lanzando</span><div class="project-title">Asudata</div><div class="project-desc">Consultoría de Business Intelligence potenciada con IA. Dashboards, automatizaciones y estrategia de datos para empresas paraguayas y regionales.</div><div class="project-metrics"><div><div class="pm-val">asudata.net</div><div class="pm-label">Web activa</div></div><div><div class="pm-val">Mayo</div><div class="pm-label">Primer cliente</div></div></div><div class="project-team"><strong>Equipo:</strong> Andrés (CEO) · Juan Domecq (Socio)</div></div>
-    <div class="project-card airbnb"><div class="project-num">03</div><span class="project-badge">Planificando</span><div class="project-title">Airbnb Investment</div><div class="project-desc">Chalet de 200m² en Luque sobre terreno propio titulado. Financiado con crédito hipotecario Itaú. Ingreso pasivo estimado de 1.5M+ Gs/mes.</div><div class="project-metrics"><div><div class="pm-val">200m²</div><div class="pm-label">Chalet en Luque</div></div><div><div class="pm-val">Q2 2026</div><div class="pm-label">Inicio construcción</div></div></div><div class="project-team"><strong>Estructura:</strong> Crédito Itaú · Terreno titulado · Renta: 1.5M Gs/mes</div></div>
-    <div class="project-card ia"><div class="project-num">04</div><span class="project-badge">En desarrollo</span><div class="project-title">IA Contable</div><div class="project-desc">Automatización de descarga y procesamiento de facturas para estudio contable. Proyecto independiente vinculado a Asudata, con equipo y cliente propios.</div><div class="project-metrics"><div><div class="pm-val">Bruno</div><div class="pm-label">Socio del proyecto</div></div><div><div class="pm-val">Python + IA</div><div class="pm-label">Stack tecnológico</div></div></div><div class="project-team"><strong>Cliente:</strong> Estudio contable · Spin-off de Asudata con equipo independiente</div></div>
-  </div>
-</section>
+<!-- PROYECTOS — MORADO -->
+<div class="sec-purple">
+  <section id="proyectos">
+    <div class="section-header">
+      <div class="section-tag">Emprendimientos</div>
+      <h2>Cuatro proyectos.<br>Un sistema.</h2>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card solar"><div class="project-num">01</div><span class="project-badge">Activo</span><div class="project-title">SolarTech</div><div class="project-desc">Soluciones de energía solar en Paraguay. Iluminación solar con red de comisionistas y expansión al interior. Metodología Agile con sprints quincenales.</div><div class="project-metrics"><div><div class="pm-val">8</div><div class="pm-label">Ventas primer mes</div></div><div><div class="pm-val">60%+</div><div class="pm-label">Margen neto</div></div><div><div class="pm-val">2</div><div class="pm-label">Zonas activas</div></div></div><div class="project-team"><strong>Equipo:</strong> Andrés (CEO) · Liam (CCO/Socio) · Wi y red de comisionistas</div></div>
+      <div class="project-card asu"><div class="project-num">02</div><span class="project-badge">Lanzando</span><div class="project-title">Asudata</div><div class="project-desc">Consultoría de Business Intelligence potenciada con IA. Dashboards, automatizaciones y estrategia de datos para empresas paraguayas y regionales.</div><div class="project-metrics"><div><div class="pm-val">asudata.net</div><div class="pm-label">Web activa</div></div><div><div class="pm-val">Mayo</div><div class="pm-label">Primer cliente</div></div></div><div class="project-team"><strong>Equipo:</strong> Andrés (CEO) · Juan Domecq (Socio)</div></div>
+      <div class="project-card airbnb"><div class="project-num">03</div><span class="project-badge">Planificando</span><div class="project-title">Airbnb Investment</div><div class="project-desc">Chalet de 200m² en Luque sobre terreno propio titulado. Financiado con crédito hipotecario Itaú. Ingreso pasivo estimado de 1.5M+ Gs/mes.</div><div class="project-metrics"><div><div class="pm-val">200m²</div><div class="pm-label">Chalet en Luque</div></div><div><div class="pm-val">Q2 2026</div><div class="pm-label">Inicio construcción</div></div></div><div class="project-team"><strong>Estructura:</strong> Crédito Itaú · Terreno titulado · Renta: 1.5M Gs/mes</div></div>
+      <div class="project-card ia"><div class="project-num">04</div><span class="project-badge">En desarrollo</span><div class="project-title">IA Contable</div><div class="project-desc">Automatización de descarga y procesamiento de facturas para estudio contable. Proyecto independiente vinculado a Asudata, con equipo y cliente propios.</div><div class="project-metrics"><div><div class="pm-val">Bruno</div><div class="pm-label">Socio del proyecto</div></div><div><div class="pm-val">Python + IA</div><div class="pm-label">Stack tecnológico</div></div></div><div class="project-team"><strong>Cliente:</strong> Estudio contable · Spin-off de Asudata con equipo independiente</div></div>
+    </div>
+  </section>
+</div>
 
-<hr class="divider">
+<!-- VISIÓN — BLANCO -->
+<div class="sec-white">
+  <section id="vision">
+    <div class="section-header">
+      <div class="section-tag">Roadmap</div>
+      <h2>La línea de tiempo<br>2026 → 2027.</h2>
+    </div>
+    <div class="timeline" style="--tl-line:var(--border)">
+      <style>
+        .sec-white .timeline::before{background:var(--border)}
+        .sec-white .tl-dot{background:var(--white);border-color:var(--border)}
+        .sec-white .tl-dot.done{background:var(--purple);border-color:var(--purple)}
+        .sec-white .tl-dot.now{background:var(--purple-deep);border-color:var(--purple-deep);box-shadow:0 0 0 4px var(--purple-light)}
+        .sec-white .tl-card{background:var(--white);border-color:var(--border)}
+        .sec-white .tl-card.now-card{border-color:var(--purple);box-shadow:0 0 0 3px var(--purple-light)}
+        .sec-white .tl-period{color:var(--gray-mid)}
+        .sec-white .tl-title{color:var(--gray)}
+        .sec-white .tl-desc{color:var(--gray-mid)}
+      </style>
+      <div class="tl-item"><div class="tl-dot done"></div><div class="tl-card"><div class="tl-period">Ene–Abr 2026 · Completado</div><div class="tl-title">Base activada</div><div class="tl-desc">Project Leader · SolarTech y Asudata lanzados · Grado de Ingeniero Comercial defendido · Terreno Luque en trámite · Janet · Terapia · Chief AI Officer iniciado</div></div></div>
+      <div class="tl-item"><div class="tl-dot now"></div><div class="tl-card now-card"><div class="tl-period">Abr–Jun 2026 · Ahora mismo</div><div class="tl-title">Crédito + Construcción + Primer cliente Asudata</div><div class="tl-desc">Firmar crédito hipotecario Itaú · Arrancar obra en Luque · Propuesta Asudata lista · Primer cliente pagador · Liam estructurado como CCO · IA contable con Bruno</div></div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-card"><div class="tl-period">Jul–Sep 2026</div><div class="tl-title">Luque alquilado + Vivir solo + Asudata estable</div><div class="tl-desc">Chalet terminado con inquilino · Monoambiente propio · 3-5 clientes Asudata · SolarTech 30+ ventas/mes · EAS constituida · Ybytymí en venta</div></div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-card"><div class="tl-period">Oct–Dic 2026</div><div class="tl-title">Sistema funcionando solo · Visa en proceso</div><div class="tl-desc">Liam opera SolarTech autónomamente · Asudata en remoto · Destino 2027 elegido · Fondo de viaje cargado</div></div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-card"><div class="tl-period">Q1–Q2 2027 · La meta</div><div class="tl-title">Europa o EAU — semestre completo</div><div class="tl-desc">Luque cubre la cuota · Asudata genera en remoto · Creciendo afuera con todo blindado en Paraguay</div></div></div>
+    </div>
+  </section>
+</div>
 
-<!-- VISIÓN -->
-<section id="vision">
-  <div class="section-header">
-    <div class="section-tag">Roadmap</div>
-    <h2>La línea de tiempo<br>2026 → 2027.</h2>
-  </div>
-  <div class="timeline">
-    <div class="tl-item"><div class="tl-dot done"></div><div class="tl-card"><div class="tl-period">Ene–Abr 2026 · Completado</div><div class="tl-title">Base activada</div><div class="tl-desc">Project Leader · SolarTech y Asudata lanzados · Grado de Ingeniero Comercial defendido · Terreno Luque en trámite · Janet · Terapia · Chief AI Officer iniciado</div></div></div>
-    <div class="tl-item"><div class="tl-dot now"></div><div class="tl-card now-card"><div class="tl-period">Abr–Jun 2026 · Ahora mismo</div><div class="tl-title">Crédito + Construcción + Primer cliente Asudata</div><div class="tl-desc">Firmar crédito hipotecario Itaú · Arrancar obra en Luque · Propuesta Asudata lista · Primer cliente pagador · Liam estructurado como CCO · IA contable con Bruno</div></div></div>
-    <div class="tl-item"><div class="tl-dot"></div><div class="tl-card"><div class="tl-period">Jul–Sep 2026</div><div class="tl-title">Luque alquilado + Vivir solo + Asudata estable</div><div class="tl-desc">Chalet terminado con inquilino · Monoambiente propio · 3-5 clientes Asudata · SolarTech 30+ ventas/mes · EAS constituida · Ybytymí en venta</div></div></div>
-    <div class="tl-item"><div class="tl-dot"></div><div class="tl-card"><div class="tl-period">Oct–Dic 2026</div><div class="tl-title">Sistema funcionando solo · Visa en proceso</div><div class="tl-desc">Liam opera SolarTech autónomamente · Asudata en remoto · Destino 2027 elegido · Fondo de viaje cargado</div></div></div>
-    <div class="tl-item"><div class="tl-dot"></div><div class="tl-card"><div class="tl-period">Q1–Q2 2027 · La meta</div><div class="tl-title">Europa o EAU — semestre completo</div><div class="tl-desc">Luque cubre la cuota · Asudata genera en remoto · Creciendo afuera con todo blindado en Paraguay</div></div></div>
-  </div>
-</section>
+<!-- PERSONAL — MORADO -->
+<div class="sec-purple">
+  <section id="personal">
+    <div class="section-header">
+      <div class="section-tag">Vida personal</div>
+      <h2>Más allá<br>del trabajo.</h2>
+    </div>
+    <div class="personal-grid">
+      <div class="personal-card" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15)">
+        <div class="personal-icon">🌹</div>
+        <div class="personal-title" style="color:white">Janet</div>
+        <div class="personal-desc" style="color:rgba(255,255,255,0.6)">Desde febrero 2026. Conociéndonos a full. Aceptada en escuela de Trading en Miami y volviendo a la equitación. Una persona que inspira a dar lo mejor.</div>
+        <div class="personal-tags"><span class="personal-tag" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7)">Relación nueva</span><span class="personal-tag" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7)">Trading · Miami</span><span class="personal-tag" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7)">Equitación</span></div>
+      </div>
+      <div class="personal-card" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15)">
+        <div class="personal-icon">🐕</div>
+        <div class="personal-title" style="color:white">Angelita</div>
+        <div class="personal-desc" style="color:rgba(255,255,255,0.6)">6 años. La compañera incondicional. Parte de la familia y de la rutina diaria. Una de las razones para construir algo mejor cada día.</div>
+        <div class="personal-tags"><span class="personal-tag" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7)">6 años</span><span class="personal-tag" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7)">Fiel compañera</span></div>
+      </div>
+      <div class="personal-card" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15)">
+        <div class="personal-icon">🏃</div>
+        <div class="personal-title" style="color:white">Deporte y competencia</div>
+        <div class="personal-desc" style="color:rgba(255,255,255,0.6)">Entrenamiento 5 veces por semana desde las 6AM. Carrera de fondo con viaje al interior para competir próximamente.</div>
+        <div class="personal-tags"><span class="personal-tag" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7)">6AM lunes a viernes</span><span class="personal-tag" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7)">Carrera</span><span class="personal-tag" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7)">Competencia interior</span></div>
+      </div>
+      <div class="personal-card" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15)">
+        <div class="personal-icon">📚</div>
+        <div class="personal-title" style="color:white">Aprendizaje continuo</div>
+        <div class="personal-desc" style="color:rgba(255,255,255,0.6)">Chief AI Officer (Smart Data Perú) · Python · Administración Airbnb · Lectura nocturna. Cursos que construyen el diferencial de Asudata.</div>
+        <div class="personal-tags"><span class="personal-tag" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7)">Chief AI Officer</span><span class="personal-tag" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7)">Python</span><span class="personal-tag" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7)">Airbnb</span><span class="personal-tag" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7)">Lectura</span></div>
+      </div>
+    </div>
+  </section>
+</div>
 
-<hr class="divider">
-
-<!-- PERSONAL -->
-<section id="personal">
-  <div class="section-header">
-    <div class="section-tag">Vida personal</div>
-    <h2>Más allá<br>del trabajo.</h2>
-  </div>
-  <div class="personal-grid">
-    <div class="personal-card"><div class="personal-icon">🌹</div><div class="personal-title">Janet</div><div class="personal-desc">Desde febrero 2026. Conociéndonos a full. Aceptada en escuela de Trading en Miami y volviendo a la equitación. Una persona que inspira a dar lo mejor.</div><div class="personal-tags"><span class="personal-tag">Relación nueva</span><span class="personal-tag">Trading · Miami</span><span class="personal-tag">Equitación</span></div></div>
-    <div class="personal-card"><div class="personal-icon">🐕</div><div class="personal-title">Angelita</div><div class="personal-desc">6 años. La compañera incondicional. Parte de la familia y de la rutina diaria. Una de las razones para construir algo mejor cada día.</div><div class="personal-tags"><span class="personal-tag">6 años</span><span class="personal-tag">Fiel compañera</span></div></div>
-    <div class="personal-card"><div class="personal-icon">🏃</div><div class="personal-title">Deporte y competencia</div><div class="personal-desc">Entrenamiento 5 veces por semana desde las 6AM. Carrera de fondo con viaje al interior para competir próximamente.</div><div class="personal-tags"><span class="personal-tag">6AM lunes a viernes</span><span class="personal-tag">Carrera</span><span class="personal-tag">Competencia interior</span></div></div>
-    <div class="personal-card"><div class="personal-icon">📚</div><div class="personal-title">Aprendizaje continuo</div><div class="personal-desc">Chief AI Officer (Smart Data Perú) · Python · Administración Airbnb · Lectura nocturna. Cursos que construyen el diferencial de Asudata.</div><div class="personal-tags"><span class="personal-tag">Chief AI Officer</span><span class="personal-tag">Python</span><span class="personal-tag">Airbnb</span><span class="personal-tag">Lectura</span></div></div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- SISTEMA -->
-<section id="sistema">
-  <div class="section-header">
-    <div class="section-tag">Rutina diaria</div>
-    <h2>El sistema<br>infalible.</h2>
-  </div>
-  <div class="rutina-grid">
-    <div class="rutina-block"><div class="rb-dot" style="background:#534AB7"></div><div class="rb-time">5:45</div><div><div class="rb-title">Despertar</div><div class="rb-desc">Sin celular 10 min. Ropa lista la noche anterior.</div></div></div>
-    <div class="rutina-block"><div class="rb-dot" style="background:#0F6E56"></div><div class="rb-time">6:00</div><div><div class="rb-title">Entrenamiento</div><div class="rb-desc">Lunes a viernes. No negociable.</div></div></div>
-    <div class="rutina-block"><div class="rb-dot" style="background:#BA7517"></div><div class="rb-time">8:30</div><div><div class="rb-title">Trabajo — Project Leader</div><div class="rb-desc">Foco total. Sin mezclar con emprendimientos.</div></div></div>
-    <div class="rutina-block"><div class="rb-dot" style="background:#534AB7"></div><div class="rb-time">18:00</div><div><div class="rb-title">Bloque emprendimientos — 90 min</div><div class="rb-desc">Asudata o SolarTech. Sagrado.</div></div></div>
-    <div class="rutina-block"><div class="rb-dot" style="background:#185FA5"></div><div class="rb-time">19:30</div><div><div class="rb-title">Cursos — 45 min</div><div class="rb-desc">Chief AI Officer · Python · Airbnb.</div></div></div>
-    <div class="rutina-block"><div class="rb-dot" style="background:#D85A30"></div><div class="rb-time">21:30</div><div><div class="rb-title">Lectura + cierre</div><div class="rb-desc">20 min de libro. A las 22hs a dormir.</div></div></div>
-  </div>
-  <div class="section-header">
-    <div class="section-tag">Reglas del sistema</div>
-    <h2>Las 6 que no<br>se negocian.</h2>
-  </div>
-  <div class="reglas-list">
-    <div class="regla"><div class="regla-n">01</div><div><div class="regla-title">Un bloque, una cosa</div><div class="regla-desc">90 minutos de foco vale más que 4 horas fragmentadas.</div></div></div>
-    <div class="regla"><div class="regla-n">02</div><div><div class="regla-title">La noche anterior prepara el día</div><div class="regla-desc">Ropa lista, agenda revisada, una tarea definida.</div></div></div>
-    <div class="regla"><div class="regla-n">03</div><div><div class="regla-title">Google Calendar es la ley</div><div class="regla-desc">Lo que no está en el calendario no existe.</div></div></div>
-    <div class="regla"><div class="regla-n">04</div><div><div class="regla-title">Nunca dos días seguidos sin emprendimiento</div><div class="regla-desc">Una pausa está bien. Dos seguidos es abandono.</div></div></div>
-    <div class="regla"><div class="regla-n">05</div><div><div class="regla-title">Liam reporta, vos decidís</div><div class="regla-desc">Decisiones estratégicas una vez por semana.</div></div></div>
-    <div class="regla"><div class="regla-n">06</div><div><div class="regla-title">El entreno es intocable</div><div class="regla-desc">6AM es entrenamiento. Sin excepciones.</div></div></div>
-  </div>
-</section>
+<!-- SISTEMA — BLANCO -->
+<div class="sec-white">
+  <section id="sistema">
+    <div class="section-header">
+      <div class="section-tag">Rutina diaria</div>
+      <h2>El sistema<br>infalible.</h2>
+    </div>
+    <div class="rutina-grid">
+      <div class="rutina-block"><div class="rb-dot" style="background:#3D2B8A"></div><div class="rb-time">5:45</div><div><div class="rb-title">Despertar</div><div class="rb-desc">Sin celular 10 min. Ropa lista la noche anterior.</div></div></div>
+      <div class="rutina-block"><div class="rb-dot" style="background:#0F6E56"></div><div class="rb-time">6:00</div><div><div class="rb-title">Entrenamiento</div><div class="rb-desc">Lunes a viernes. No negociable.</div></div></div>
+      <div class="rutina-block"><div class="rb-dot" style="background:#BA7517"></div><div class="rb-time">8:30</div><div><div class="rb-title">Trabajo — Project Leader</div><div class="rb-desc">Foco total. Sin mezclar con emprendimientos.</div></div></div>
+      <div class="rutina-block"><div class="rb-dot" style="background:#3D2B8A"></div><div class="rb-time">18:00</div><div><div class="rb-title">Bloque emprendimientos — 90 min</div><div class="rb-desc">Asudata o SolarTech. Sagrado.</div></div></div>
+      <div class="rutina-block"><div class="rb-dot" style="background:#185FA5"></div><div class="rb-time">19:30</div><div><div class="rb-title">Cursos — 45 min</div><div class="rb-desc">Chief AI Officer · Python · Airbnb.</div></div></div>
+      <div class="rutina-block"><div class="rb-dot" style="background:#D85A30"></div><div class="rb-time">21:30</div><div><div class="rb-title">Lectura + cierre</div><div class="rb-desc">20 min de libro. A las 22hs a dormir.</div></div></div>
+    </div>
+    <div class="section-header">
+      <div class="section-tag">Reglas del sistema</div>
+      <h2>Las 6 que no<br>se negocian.</h2>
+    </div>
+    <div class="reglas-list">
+      <div class="regla"><div class="regla-n">01</div><div><div class="regla-title">Un bloque, una cosa</div><div class="regla-desc">90 minutos de foco vale más que 4 horas fragmentadas.</div></div></div>
+      <div class="regla"><div class="regla-n">02</div><div><div class="regla-title">La noche anterior prepara el día</div><div class="regla-desc">Ropa lista, agenda revisada, una tarea definida.</div></div></div>
+      <div class="regla"><div class="regla-n">03</div><div><div class="regla-title">Google Calendar es la ley</div><div class="regla-desc">Lo que no está en el calendario no existe.</div></div></div>
+      <div class="regla"><div class="regla-n">04</div><div><div class="regla-title">Nunca dos días seguidos sin emprendimiento</div><div class="regla-desc">Una pausa está bien. Dos seguidos es abandono.</div></div></div>
+      <div class="regla"><div class="regla-n">05</div><div><div class="regla-title">Liam reporta, vos decidís</div><div class="regla-desc">Decisiones estratégicas una vez por semana.</div></div></div>
+      <div class="regla"><div class="regla-n">06</div><div><div class="regla-title">El entreno es intocable</div><div class="regla-desc">6AM es entrenamiento. Sin excepciones.</div></div></div>
+    </div>
+  </section>
+</div>
 
 <footer>
   <strong>Andrés Sebastián</strong> · Ingeniero Comercial · Asunción, Paraguay · 2026<br>
-  <span style="font-size:11px;margin-top:6px;display:block;opacity:.6">v3.0 · Conectado a Google Sheets · andresmezadata.github.io/mi-portal</span>
+  <span style="font-size:11px;margin-top:6px;display:block;opacity:.6">v4.0 · Conectado a Google Sheets · andresmezadata.github.io/mi-portal</span>
 </footer>
 
 <script>
-// ═══════════════════════════════════════════════════════════════
-// CONFIGURACIÓN
-// ═══════════════════════════════════════════════════════════════
 const METRICS_SHEET_URL   = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQr5NVgTKjZsrGtxwatoBX8MNFvi5fYM53p0Bd-Xw46NE4TcH7fe7Pv_efzI69uYI2xEA7BC9qf2x9V/pub?gid=994704825&single=true&output=csv';
 const CHECKLIST_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQr5NVgTKjZsrGtxwatoBX8MNFvi5fYM53p0Bd-Xw46NE4TcH7fe7Pv_efzI69uYI2xEA7BC9qf2x9V/pub?gid=229488065&single=true&output=csv';
-
-// Links directos a cada hoja para los botones
 const METRICS_SHEET_LINK   = 'https://docs.google.com/spreadsheets/d/1S2zvEBqJ1LTqKWUSKJobeua-IPgjBZ3zJUMGSVKEouw/edit?gid=994704825';
 const CHECKLIST_SHEET_LINK = 'https://docs.google.com/spreadsheets/d/1S2zvEBqJ1LTqKWUSKJobeua-IPgjBZ3zJUMGSVKEouw/edit?gid=229488065';
-
-// ═══════════════════════════════════════════════════════════════
 
 const fallbackMetrics = [
   { key: 'ventas',   val: '8',      label: 'SolarTech — Ventas', meta: 'Meta: 20 en abril' },
@@ -369,36 +420,28 @@ const fallbackMetrics = [
 ];
 
 const fallbackChecklist = [
-  { texto: 'Firmar crédito hipotecario Itaú',            badge: 'Luque',     color_bg: '#FAECE7', color_texto: '#D85A30', hecho: 'no' },
-  { texto: 'Arrancar obra en Luque',                     badge: 'Luque',     color_bg: '#FAECE7', color_texto: '#D85A30', hecho: 'no' },
-  { texto: 'Reunión con Liam — manual de ventas y CCO',  badge: 'SolarTech', color_bg: '#E1F5EE', color_texto: '#0F6E56', hecho: 'no' },
-  { texto: 'Formalizar acuerdo con Wi (comisionista)',   badge: 'SolarTech', color_bg: '#E1F5EE', color_texto: '#0F6E56', hecho: 'no' },
-  { texto: 'Inventario completo en hoja compartida',     badge: 'SolarTech', color_bg: '#E1F5EE', color_texto: '#0F6E56', hecho: 'no' },
-  { texto: 'HubSpot CRM configurado con pipeline',       badge: 'SolarTech', color_bg: '#E1F5EE', color_texto: '#0F6E56', hecho: 'no' },
-  { texto: 'Propuesta comercial Asudata — una página',   badge: 'Asudata',   color_bg: '#EEEDFE', color_texto: '#534AB7', hecho: 'no' },
-  { texto: 'LinkedIn actualizado con Asudata y nuevo rol', badge: 'Asudata', color_bg: '#EEEDFE', color_texto: '#534AB7', hecho: 'si' },
-  { texto: 'Dominio asudata.net — web activa en Wix',    badge: 'Asudata',   color_bg: '#EEEDFE', color_texto: '#534AB7', hecho: 'si' },
-  { texto: 'Primer cliente pagador Asudata',             badge: 'Asudata',   color_bg: '#EEEDFE', color_texto: '#534AB7', hecho: 'no' },
-  { texto: 'Consulta abogado — EAS y sucesión abuela',   badge: 'Legal',     color_bg: '#F1EFE8', color_texto: '#444441', hecho: 'no' },
-  { texto: 'Buscar monoambiente para mudarse',           badge: 'Personal',  color_bg: '#FBEAF0', color_texto: '#993556', hecho: 'no' },
+  { texto: 'Firmar crédito hipotecario Itaú',            badge: 'Luque',     color_bg: 'rgba(216,90,48,0.2)',   color_texto: '#FCA272', hecho: 'no' },
+  { texto: 'Arrancar obra en Luque',                     badge: 'Luque',     color_bg: 'rgba(216,90,48,0.2)',   color_texto: '#FCA272', hecho: 'no' },
+  { texto: 'Reunión con Liam — manual de ventas y CCO',  badge: 'SolarTech', color_bg: 'rgba(15,110,86,0.15)',  color_texto: '#0F6E56', hecho: 'no' },
+  { texto: 'Formalizar acuerdo con Wi (comisionista)',   badge: 'SolarTech', color_bg: 'rgba(15,110,86,0.15)',  color_texto: '#0F6E56', hecho: 'no' },
+  { texto: 'Inventario completo en hoja compartida',     badge: 'SolarTech', color_bg: 'rgba(15,110,86,0.15)',  color_texto: '#0F6E56', hecho: 'no' },
+  { texto: 'HubSpot CRM configurado con pipeline',       badge: 'SolarTech', color_bg: 'rgba(15,110,86,0.15)',  color_texto: '#0F6E56', hecho: 'no' },
+  { texto: 'Propuesta comercial Asudata — una página',   badge: 'Asudata',   color_bg: '#EEEDFE',               color_texto: '#534AB7', hecho: 'no' },
+  { texto: 'LinkedIn actualizado con Asudata y nuevo rol', badge: 'Asudata', color_bg: '#EEEDFE',               color_texto: '#534AB7', hecho: 'si' },
+  { texto: 'Dominio asudata.net — web activa en Wix',    badge: 'Asudata',   color_bg: '#EEEDFE',               color_texto: '#534AB7', hecho: 'si' },
+  { texto: 'Primer cliente pagador Asudata',             badge: 'Asudata',   color_bg: '#EEEDFE',               color_texto: '#534AB7', hecho: 'no' },
+  { texto: 'Consulta abogado — EAS y sucesión abuela',   badge: 'Legal',     color_bg: '#F1EFE8',               color_texto: '#444441', hecho: 'no' },
+  { texto: 'Buscar monoambiente para mudarse',           badge: 'Personal',  color_bg: '#FBEAF0',               color_texto: '#993556', hecho: 'no' },
 ];
 
-// Paleta de colores cíclica para tarjetas dinámicas
 const CARD_PALETTE = [
-  { top: '#D85A30', val: '#D85A30' },
-  { top: '#534AB7', val: '#534AB7' },
-  { top: '#0F6E56', val: '#0F6E56' },
-  { top: '#BA7517', val: '#BA7517' },
-  { top: '#185FA5', val: '#185FA5' },
-  { top: '#993556', val: '#993556' },
+  '#FCA272','#A78BFA','#6EE7C7','#FCD34D','#93C5FD','#F9A8D4'
 ];
 
-// ─── PARSEAR CSV ──────────────────────────────────────────────
 function parseCSV(text) {
   const lines = text.trim().split('\n');
   const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, ''));
   return lines.slice(1).map(line => {
-    // Manejo básico de comas dentro de comillas
     const vals = [];
     let cur = '', inQ = false;
     for (const ch of line) {
@@ -411,7 +454,6 @@ function parseCSV(text) {
   });
 }
 
-// ─── CARGAR MÉTRICAS DINÁMICAS ────────────────────────────────
 async function loadMetrics() {
   try {
     const res  = await fetch(METRICS_SHEET_URL);
@@ -431,61 +473,45 @@ function renderMetricsDynamic(rows) {
   const grid = document.querySelector('.metrics-grid');
   if (!grid) return;
   grid.innerHTML = '';
-
-  // Ajustar columnas según cantidad de tarjetas
   const n = rows.length;
-  grid.style.gridTemplateColumns = n <= 4
-    ? `repeat(${n}, 1fr)`
-    : `repeat(${Math.min(n, 4)}, 1fr)`;
+  grid.style.gridTemplateColumns = n <= 4 ? `repeat(${n}, 1fr)` : `repeat(${Math.min(n, 4)}, 1fr)`;
 
   rows.forEach((row, i) => {
-    const { top, val: valColor } = CARD_PALETTE[i % CARD_PALETTE.length];
+    const color = CARD_PALETTE[i % CARD_PALETTE.length];
     const card = document.createElement('div');
     card.className = 'metric-card';
-    card.style.cssText = `--top:${top}`;
+    card.style.borderTop = `3px solid ${color}`;
     card.innerHTML = `
-      <style>.metric-card[style*="${top}"]::before{background:${top}}</style>
       <div class="metric-label">${row.label || row.key}</div>
-      <div class="metric-val" style="color:${valColor};font-family:'Syne',sans-serif;font-size:28px;font-weight:800;letter-spacing:-1px;margin-bottom:3px">${row.val || '—'}</div>
+      <div class="metric-val" style="color:${color}">${row.val || '—'}</div>
       <div class="metric-sub">${row.meta || ''}</div>
     `;
     grid.appendChild(card);
   });
 
-  // Botón editar métricas
   const statusRow = document.getElementById('metrics-status');
   if (statusRow && !document.getElementById('btn-metrics-sheet')) {
+    const wrapper = document.createElement('div');
+    wrapper.style.cssText = 'display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-top:8px';
+    statusRow.parentNode.insertBefore(wrapper, statusRow);
+    wrapper.appendChild(statusRow);
     const btn = document.createElement('a');
     btn.id = 'btn-metrics-sheet';
     btn.href = METRICS_SHEET_LINK;
     btn.target = '_blank';
     btn.textContent = '✏️ Editar métricas';
-    btn.style.cssText = `
-      display:inline-flex;align-items:center;gap:6px;
-      background:#0F6E56;color:white;font-size:12px;font-weight:600;
-      padding:7px 14px;border-radius:20px;text-decoration:none;
-      margin-left:12px;transition:opacity .2s;
-    `;
+    btn.style.cssText = 'display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.15);color:white;font-size:12px;font-weight:600;padding:7px 14px;border-radius:20px;text-decoration:none;border:1px solid rgba(255,255,255,0.25);transition:opacity .2s';
     btn.onmouseover = () => btn.style.opacity = '.8';
     btn.onmouseout  = () => btn.style.opacity = '1';
-    statusRow.parentNode.insertBefore(btn, statusRow.nextSibling);
-
-    // Wrapper para alinear status + botón
-    const wrapper = document.createElement('div');
-    wrapper.style.cssText = 'display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-top:8px';
-    statusRow.parentNode.insertBefore(wrapper, statusRow);
-    wrapper.appendChild(statusRow);
     wrapper.appendChild(btn);
   }
 }
 
-// ─── CARGAR CHECKLIST ─────────────────────────────────────────
 async function loadChecklist() {
   try {
     const res  = await fetch(CHECKLIST_SHEET_URL);
     const text = await res.text();
-    const rows = parseCSV(text);
-    renderChecklist(rows);
+    renderChecklist(parseCSV(text));
   } catch(e) {
     renderChecklist(fallbackChecklist);
   }
@@ -495,7 +521,6 @@ function renderChecklist(items) {
   const container = document.getElementById('checklist');
   container.innerHTML = '';
   let doneCount = 0;
-
   items.forEach(item => {
     const isDone = (item.hecho || '').toLowerCase().trim() === 'si';
     if (isDone) doneCount++;
@@ -512,14 +537,11 @@ function renderChecklist(items) {
     `;
     container.appendChild(div);
   });
-
-  const total = items.length || 1;
-  const pct   = Math.round(doneCount / total * 100);
+  const pct = Math.round(doneCount / (items.length || 1) * 100);
   document.getElementById('cl-progress').textContent = `${doneCount} / ${items.length} completados`;
   document.getElementById('cl-bar').style.width = pct + '%';
 }
 
-// ─── INICIAR ──────────────────────────────────────────────────
 loadMetrics();
 loadChecklist();
 </script>
